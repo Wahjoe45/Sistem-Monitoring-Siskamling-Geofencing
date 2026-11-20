@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Laporan;
 use App\Models\Posjaga;
 use App\Models\User;
 
@@ -13,11 +15,13 @@ class DashboardWargaController extends Controller
         // Menghitung jumlah data pada tabel posjaga
         $jumlahPosJaga = Posjaga::count();
         $jumlahWarga = User::where('role', 'warga')->count();
+        $jumlahLaporan = Laporan::count();
 
         // Mengirimkan variabel ke halaman dashboard
         return view('warga.viewwarga', [
             'jumlahPosJaga' => $jumlahPosJaga,
-            'jumlahWarga' => $jumlahWarga
+            'jumlahWarga' => $jumlahWarga,
+            'jumlahLaporan' => $jumlahLaporan
         ]);
     }
 }

@@ -47,8 +47,8 @@
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                   " name="namaLaporan" value="{{ old('namaLaporan') }}" required>
 
-                <!-- error message untuk nama pelapor -->
-                @error('namaPelapor')
+                <!-- error message untuk nama Laporan -->
+                @error('namaLaporan')
                 <div class="bg-red-400 p-2 shadow-sm rounded mt-2">
                     {{ $message }}
                 </div>
@@ -73,7 +73,7 @@
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                  " name="namaPelapor" value="{{ old('namaPelapor') }}" required>
+                  " name="namaPelapor" value="{{ Auth::user()->nama }}" required>
 
                 <!-- error message untuk nama pelapor -->
                 @error('namaPelapor')
