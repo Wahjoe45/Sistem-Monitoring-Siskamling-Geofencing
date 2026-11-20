@@ -13,10 +13,12 @@ class DashboardController extends Controller
     {
         // Menghitung jumlah data pada tabel posjaga
         $jumlahPosJaga = Posjaga::count();
+        $jumlahWarga = User::where('role', 'warga')->count();
 
         // Mengirimkan variabel ke halaman dashboard
         return view('pengurus.viewpengurus', [
-            'jumlahPosJaga' => $jumlahPosJaga
+            'jumlahPosJaga' => $jumlahPosJaga,
+            'jumlahWarga' => $jumlahWarga
         ]);
     }
 

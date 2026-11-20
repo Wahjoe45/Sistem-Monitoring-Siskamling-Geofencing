@@ -64,6 +64,32 @@
             </div>
         </div>
 
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card border-left-success shadow py-2">
+                <div class="card-body">
+                    <div class="text-xs font-weight-bold text-success mb-1">
+                        Jumlah Pos Jaga
+                    </div>
+                    <div class="h5 font-weight-bold text-gray-800">
+                        {{ $jumlahPosJaga }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card border-left-success shadow py-2">
+                <div class="card-body">
+                    <div class="text-xs font-weight-bold text-success mb-1">
+                        Jumlah Warga
+                    </div>
+                    <div class="h5 font-weight-bold text-gray-800">
+                        {{ $jumlahWarga }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection
