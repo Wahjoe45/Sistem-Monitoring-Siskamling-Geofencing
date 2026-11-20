@@ -29,3 +29,6 @@ Route::middleware(['auth', 'checkrole:warga'])
     ->get('/warga', function () {
         return view('warga.viewwarga');
     })->name('warga.viewwarga');
+
+//olah data pos jaga
+Route::resource('posjaga', \App\Http\Controllers\PosjagaController::class);
