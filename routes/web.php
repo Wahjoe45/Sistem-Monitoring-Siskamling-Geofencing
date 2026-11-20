@@ -33,5 +33,5 @@ Route::middleware(['auth', 'checkrole:warga'])
 //olah data pos jaga
 Route::resource('posjaga', \App\Http\Controllers\PosjagaController::class);
 
-Route::get('/dashboard/pengurus', [DashboardController::class, 'viewpengurus'])
-    ->name('pengurus.viewpengurus');
+//olah data laporan
+Route::resource('laporan', \App\Http\Controllers\LaporanController::class);

@@ -17,14 +17,14 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('posjaga.index') }}">
-            <i class="fas fa-fw fa-file-alt"></i>
+            <i class="fas fa-fw fa-plus-circle"></i>
             <span>Data Pos Jaga</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-plus-circle"></i>
+        <a class="nav-link" href="{{ route('laporan.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
             <span>Lihat Laporan</span>
         </a>
     </li>
