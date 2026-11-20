@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,10 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 
 // login
+// Dashboard Pengurus
 Route::middleware(['auth', 'checkrole:pengurus'])
-    ->get('/pengurus', function () {
-        return view('pengurus.viewpengurus');
-    })->name('pengurus.viewpengurus');
+    ->get('/pengurus', [DashboardController::class, 'viewpengurus'])
+    ->name('pengurus.viewpengurus');
 
 
 Route::middleware(['auth', 'checkrole:warga'])
@@ -32,3 +33,6 @@ Route::middleware(['auth', 'checkrole:warga'])
 
 //olah data pos jaga
 Route::resource('posjaga', \App\Http\Controllers\PosjagaController::class);
+
+Route::get('/dashboard/pengurus', [DashboardController::class, 'viewpengurus'])
+    ->name('pengurus.viewpengurus');

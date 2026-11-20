@@ -20,6 +20,7 @@
                 DAFTAR POS JAGA
             </h1>
         </div>
+
         <div class="col-span-4">
             <div class="flex justify-end">
                 <a href="{{ route('posjaga.create') }}"
