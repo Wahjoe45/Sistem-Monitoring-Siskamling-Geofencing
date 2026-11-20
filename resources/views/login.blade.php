@@ -108,6 +108,11 @@
                                     Login
                                 </button>
 
+                                <div class="text-center mt-3">
+                                     <p>Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
+                                    </p>
+                                </div>
+
                             </form>
 
                             <hr>

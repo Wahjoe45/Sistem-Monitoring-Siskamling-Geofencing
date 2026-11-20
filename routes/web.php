@@ -18,11 +18,14 @@ Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
 
-Route::middleware(['auth', 'checkrole:pengurus'])->get('/pengurus', function () {
-    return view('pengurus.viewpengurus');
-});
+// login
+Route::middleware(['auth', 'checkrole:pengurus'])
+    ->get('/pengurus', function () {
+        return view('pengurus.viewpengurus');
+    })->name('pengurus.viewpengurus');
 
 
-Route::middleware(['auth', 'checkrole:warga'])->get('/warga', function () {
-    return view('warga.viewwarga');
-});
+Route::middleware(['auth', 'checkrole:warga'])
+    ->get('/warga', function () {
+        return view('warga.viewwarga');
+    })->name('warga.viewwarga');
