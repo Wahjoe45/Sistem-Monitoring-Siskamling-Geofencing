@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password', 255);
             $table->enum('role', ['pengurus', 'warga'])->default('warga');
             $table->string('no_telepon', 20);
+            $table->string('blok', 10);
             $table->rememberToken();
             $table->timestamps();
         });
