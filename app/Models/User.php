@@ -32,4 +32,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function jadwalDetails()
+    {
+        return $this->hasMany(
+            JadwalDetail::class,
+            'id_warga',
+            'id_warga'
+        );
+    }
 }
