@@ -1,11 +1,6 @@
-
-
 @extends('layouts.app')
-
 @section('title', 'Dashboard Pengurus RT')
-
 @section('page-title', 'Dashboard Pengurus RT')
-
 @section('sidebar-menu')
 
     <li class="nav-item active">

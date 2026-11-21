@@ -1,10 +1,6 @@
-
 @extends('layouts.app')
-
 @section('title', 'Dashboard Warga')
-
 @section('page-title', 'Dashboard Warga')
-
 @section('sidebar-menu')
 
     <li class="nav-item active">
@@ -36,11 +32,9 @@
         </a>
     </li>
 @endif
-
 @endsection
 
 @section('content')
-
     <p class="text-gray-600">
         Selamat datang, {{ Auth::user()->nama }}!
     </p>
@@ -111,7 +105,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 @endsection
