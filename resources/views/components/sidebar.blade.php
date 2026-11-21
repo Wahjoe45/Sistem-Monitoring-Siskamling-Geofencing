@@ -4,7 +4,9 @@
 
     <!-- Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center"
-       href="{{ url('/') }}">
+   href="{{ auth()->user()->role == 'pengurus'
+        ? route('pengurus.viewpengurus')
+        : route('warga.viewwarga') }}">
 
         <div class="sidebar-brand-icon">
             <i class="fas fa-layer-group"></i>
