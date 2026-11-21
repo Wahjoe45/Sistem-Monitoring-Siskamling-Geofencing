@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'username' => 'pengurus1',
             'password' => Hash::make('pengurus123'),
             'no_telepon' => '085792080611',
+            'blok' => 'G-11',
             'role' => 'pengurus'
         ]);
 
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             'username' => 'warga1',
             'password' => Hash::make('warga123'),
             'no_telepon' => '085792081611',
+            'blok' => 'G-11',
             'role' => 'warga'
         ]);
     }

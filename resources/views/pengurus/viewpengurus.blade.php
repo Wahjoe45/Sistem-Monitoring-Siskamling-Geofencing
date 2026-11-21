@@ -29,6 +29,14 @@
         </a>
     </li>
 
+@if (auth()->user()->role == 'pengurus')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('jadwal.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Jadwal Jaga</span>
+        </a>
+    </li>
+@endif
 
 @endsection
 

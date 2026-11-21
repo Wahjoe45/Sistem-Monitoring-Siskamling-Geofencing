@@ -39,16 +39,18 @@ Route::resource('laporan', \App\Http\Controllers\LaporanController::class);
 
 Route::middleware(['auth'])->group(function () {
 
-    // Menampilkan jadwal
+    // Pengurus dan warga dapat melihat jadwal
     Route::get('/jadwal', [JadwalController::class, 'index'])
         ->name('jadwal.index');
 
-    // Proses pengacakan jadwal
-    Route::post('/jadwal/acak', [JadwalController::class, 'acak'])
-        ->name('jadwal.acak');
+    // Hanya pengurus yang dapat mengelola jadwal
+    Route::middleware(['checkrole:pengurus'])->group(function () {
 
-    // Menghapus jadwal
-    Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])
-        ->name('jadwal.destroy');
+        Route::post('/jadwal/acak', [JadwalController::class, 'acak'])
+            ->name('jadwal.acak');
+
+        Route::delete('/jadwal/{jadwal}', [JadwalController::class, 'destroy'])
+            ->name('jadwal.destroy');
+    });
 
 });
