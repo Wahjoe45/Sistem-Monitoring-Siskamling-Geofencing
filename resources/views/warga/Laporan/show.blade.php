@@ -1,6 +1,35 @@
 @extends('layouts.app')
 @section('sidebar-menu')
 
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('warga.viewwarga') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Diagram riwayat checkpoint</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('laporan.index') }}">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>Buat Laporan</span>
+        </a>
+    </li>
+
+@if (auth()->user()->role == 'warga')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('jadwal.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Jadwal Jaga</span>
+        </a>
+    </li>
+@endif
 @endsection
 
 @section('content')

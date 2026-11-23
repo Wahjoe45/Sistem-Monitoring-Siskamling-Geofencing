@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/jadwal', [JadwalController::class, 'index'])
         ->name('jadwal.index');
 
+        Route::get('/jadwalwarga', [JadwalController::class, 'jadwalwarga'])
+        ->name('jadwal.jadwalwarga');
+
     // Hanya pengurus yang dapat mengelola jadwal
     Route::middleware(['checkrole:pengurus'])->group(function () {
 

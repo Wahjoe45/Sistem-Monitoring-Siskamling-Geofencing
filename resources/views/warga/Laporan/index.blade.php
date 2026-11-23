@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('sidebar-menu')
+
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('warga.viewwarga') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
