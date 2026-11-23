@@ -1,5 +1,27 @@
 @extends('layouts.app')
 @section('sidebar-menu')
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('pengurus.viewpengurus') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('posjaga.index') }}">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>Data Pos Jaga</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('laporan.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Lihat Laporan</span>
+        </a>
+    </li>
+    
 @endsection
 @section('content')
 
