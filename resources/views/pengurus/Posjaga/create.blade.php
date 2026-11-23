@@ -1,164 +1,138 @@
 @extends('layouts.app')
 @section('sidebar-menu')
-
 @endsection
-
 @section('content')
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Tambah Pos Baru</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-</head>
 
-<body>
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            Tambah Pos Baru
+        </h1>
 
-<div class="container mx-auto mt-10 mb-10 px-10">
-    <div class="grid grid-cols-8 gap-4 p-5">
-        <div class="col-span-4 mt-2">
-            <h1 class="text-3xl font-bold">
-                Tambah Pos Baru
-            </h1>
-        </div>
-        <div class="col-span-4">
-
-        </div>
-    </div>
-    <div class="bg-white p-5 rounded shadow-sm">
-        <form action="{{ route('posjaga.store') }}" method="POST">
-            @csrf
-
-            <div class="mb-5">
-                <label for="namaPos">Namapos</label>
-                <input type="text" class="
-                    form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded-full
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                  " name="namaPos" value="{{ old('namaPos') }}" required>
-
-                <!-- error message untuk Nama Pos -->
-                @error('namaPos')
-                <div class="bg-red-400 p-2 shadow-sm rounded mt-2">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="mb-5">
-                <label for="deskripsiPos">deskripsiPos</label>
-                <input type="text" class="
-                    form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded-full
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                  " name="deskripsiPos" value="{{ old('deskripsiPos') }}" required>
-
-                <!-- error message untuk Deskripsi Pos -->
-                @error('deskripsiPos')
-                <div class="bg-red-400 p-2 shadow-sm rounded mt-2">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="mb-5">
-                <label for="latitude">Latitude</label>
-                <input type="text" class="
-                    form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded-full
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                  " name="latitude" value="{{ old('latitude') }}" required>
-
-                <!-- error message untuk latitude -->
-                @error('latitude')
-                <div class="bg-red-400 p-2 shadow-sm rounded mt-2">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="mb-5">
-                <label for="longitude">Longitude</label>
-                <input type="text" class="
-                    form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded-full
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                  " name="longitude" value="{{ old('longitude') }}" required>
-
-                <!-- error message untuk longitude -->
-                @error('longitude')
-                <div class="bg-red-400 p-2 shadow-sm rounded mt-2">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="mt-3">
-                <button type="submit"
-                        class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-                    Simpan
-                </button>
-                <a href="{{ route('posjaga.index') }}"
-                   class="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out">Kembali</a>
-            </div>
-
-        </form>
-
+        <a href="{{ route('posjaga.index') }}" class="btn btn-secondary btn-sm shadow-sm mt-3 mt-sm-0">
+            <i class="fas fa-arrow-left fa-sm"></i>
+            Kembali
+        </a>
     </div>
 
+    <div class="row">
+        <div class="col-xl-8 col-lg-10 col-md-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        Form Tambah Data Pos Jaga
+                    </h6>
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('posjaga.store') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="namaPos">
+                                Nama Pos Jaga
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="text"
+                                   class="form-control
+                                   @error('namaPos') is-invalid
+                                   @enderror"
+                                   id="namaPos"
+                                   name="namaPos"
+                                   value="{{ old('namaPos') }}" placeholder="Masukkan nama pos jaga" required>
+
+                            @error('namaPos')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deskripsiPos">
+                                Deskripsi Pos
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="text"
+                                   class="form-control
+                                   @error('deskripsiPos') is-invalid
+                                   @enderror"
+                                   id="deskripsiPos"
+                                   name="deskripsiPos"
+                                   value="{{ old('deskripsiPos') }}" placeholder="Masukkan deskripsi lokasi pos" required>
+
+                            @error('deskripsiPos')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="latitude">
+                                Latitude
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="text" class="form-control
+                                   @error('latitude') is-invalid
+                                   @enderror"
+                                   id="latitude"
+                                   name="latitude"
+                                   value="{{ old('latitude') }}" placeholder="Contoh: 8°06'26.1"S" required>
+
+                            @error('latitude')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            <small class="form-text text-muted">
+                                Masukkan koordinat latitude lokasi pos jaga.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="longitude">
+                                Longitude
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="text" class="form-control
+                                   @error('longitude') is-invalid
+                                   @enderror"
+                                   id="longitude"
+                                   name="longitude"
+                                   value="{{ old('longitude') }}" placeholder="Contoh: 112°09'48.1"E" required>
+
+                            @error('longitude')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            <small class="form-text text-muted"> Masukkan koordinat longitude lokasi pos jaga. </small>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex flex-column flex-sm-row">
+                            <button type="submit" class="btn btn-primary shadow-sm mr-sm-2 mb-2 mb-sm-0">
+                                <i class="fas fa-save mr-1"> Simpan </i>
+                            </button>
+
+                            <a href="{{ route('posjaga.index') }}" class="btn btn-secondary shadow-sm">
+                                <i class="fas fa-times mr-1"> Batal </i>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-</body>
 @endsection
-
-</html>

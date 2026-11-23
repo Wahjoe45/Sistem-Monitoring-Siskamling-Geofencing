@@ -1,8 +1,6 @@
 @extends('layouts.app')
-
 @section('sidebar-menu')
 @endsection
-
 @section('content')
 
 <div class="container-fluid">

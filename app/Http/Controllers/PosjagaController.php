@@ -92,7 +92,6 @@ class PosjagaController extends Controller
             'latitude' => $latitude,
             'longitude' => $longitude,
         ]);
-
         return redirect()->route('posjaga.index')
             ->with('success', 'Pos jaga berhasil dibuat.');
     }

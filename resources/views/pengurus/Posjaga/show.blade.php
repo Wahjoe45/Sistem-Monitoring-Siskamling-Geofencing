@@ -1,83 +1,96 @@
 @extends('layouts.app')
 @section('sidebar-menu')
-
 @endsection
-
 @section('content')
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Detail Pos {{ $posjaga->namaPos }} </title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-</head>
 
-<body>
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            Detail Pos {{ $posjaga->namaPos }}
+        </h1>
 
-<div class="container mx-auto mt-10 mb-10 px-10">
-    <div class="grid grid-cols-8 gap-4 mb-4 p-5">
-        <div class="col-span-4 mt-2">
-            <h1 class="text-3xl font-bold">
-                Detail Pos {{ $posjaga->namaPos }}
-            </h1>
-
-        </div>
-    </div>
-    <div class="bg-white p-5 rounded shadow-sm">
-        <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-
-                <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Nama Pos Jaga
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $posjaga->namaPos}}
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Deskripsi Pos
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $posjaga->deskripsiPos }}
-                    </td>
-                </tr>
-
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Latitude
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $posjaga->latitude }}
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Longitude
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $posjaga->longitude }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-
+        <a href="{{ route('posjaga.index') }}"
+           class="btn btn-secondary btn-sm shadow-sm mt-3 mt-sm-0">
+            <i class="fas fa-arrow-left fa-sm"> Kembali </i>
+        </a>
     </div>
 
-    <a href="{{ route('posjaga.index') }}"
-       class="mt-3 inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded-full ">Kembali</a>
-    <a href="{{ route('posjaga.edit', $posjaga) }}"
-       class="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded-full"
-       id="edit-product-btn">Rubah Data Pos</a>
+    <div class="row">
+        <div class="col-xl-8 col-lg-10 col-md-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex align-items-center
+                            justify-content-between">
 
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        Informasi Pos Jaga
+                    </h6>
+
+                    <span class="badge badge-primary">
+                        ID Pos: {{ $posjaga->id_pos }}
+                    </span>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light" width="35%">
+                                        <i class="fas fa-map-marker-alt text-primary mr-2"> Nama Pos Jaga </i>
+                                    </th>
+
+                                    <td> {{ $posjaga->namaPos }} </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="bg-light">
+                                        <i class="fas fa-align-left text-primary mr-2"> Deskripsi Pos </i>
+                                    </th>
+
+                                    <td> {{ $posjaga->deskripsiPos }} </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="bg-light">
+                                        <i class="fas fa-globe text-primary mr-2"> Latitude </i>
+                                    </th>
+
+                                    <td> {{ $posjaga->latitude }} </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="bg-light">
+                                        <i class="fas fa-globe text-primary mr-2"> Longitude </i>
+                                    </th>
+
+                                    <td> {{ $posjaga->longitude }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-info mt-4 mb-0">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Koordinat latitude dan longitude di atas digunakan
+                        sebagai titik lokasi pos jaga dalam sistem
+                        checkpoint geofencing.
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex flex-column flex-sm-row">
+                        <a href="{{ route('posjaga.index') }}" class="btn btn-secondary shadow-sm mr-sm-2 mb-2 mb-sm-0">
+                            <i class="fas fa-arrow-left mr-1"> Kembali </i>
+                        </a>
+
+                        <a href="{{ route('posjaga.edit', $posjaga) }}" class="btn btn-warning shadow-sm" id="edit-product-btn">
+                            <i class="fas fa-edit mr-1"> Rubah Data Pos </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-</body>
 @endsection
-
-</html>
