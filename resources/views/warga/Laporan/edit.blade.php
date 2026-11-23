@@ -1,6 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('sidebar-menu')
 
+@endsection
+
+@section('content')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

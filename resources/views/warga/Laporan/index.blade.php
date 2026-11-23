@@ -1,114 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('sidebar-menu')
+@endsection
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>List Laporan</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-</head>
+@section('content')
 
-<body>
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-file-alt mr-2"></i>
+            Daftar Laporan
+        </h1>
 
-<div class="container mx-auto mt-10 mb-10 px-10">
-    <div class="grid grid-cols-8 gap-4 mb-4 p-5">
-        <div class="col-span-4 mt-2">
-            <h1 class="text-3xl font-bold">
-                DAFTAR LAPORAN
-            </h1>
-        </div>
-        <div class="col-span-4">
-            <div class="flex justify-end">
-                <a href="{{ route('laporan.create') }}"
-                   class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                   id="add-product-btn">Buat Laporan Baru</a>
-            </div>
-        </div>
-    </div>
-    <div class="bg-white p-5 rounded shadow-sm">
-        <!-- Notifikasi menggunakan flash session data -->
-        @if (session('success'))
-            <div class="p-3 rounded bg-green-500 text-green-100 mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-        <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        No
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Nama Laporan
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Nama Pelapor
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Isi Laporan
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse ($laporans as $laporan)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                        <td class="px-6 py-4">
-                            {{ $loop->iteration }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $laporan->namaLaporan}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $laporan->namaPelapor }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $laporan->isiLaporan }}
-                        </td>
-                        <td class="px-6 py-4">
-                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                  action="{{ route('laporan.destroy', $laporan) }}" method="POST">
-
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('laporan.show', $laporan) }}" id="{{ $laporan->id_laporan }}-edit-btn"
-                                   class="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out">Lihat</a>
-
-                                <a href="{{ route('laporan.edit', $laporan) }}" id="{{ $laporan->id_laporan }}-edit-btn"
-                                   class="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out">Edit</a>
-
-                                <button type="submit"
-                                        class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
-                                        id="{{ $laporan->id_laporan }}-delete-btn">Hapus
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-
-                @empty
-                    <tr>
-                        <td class="text-center text-sm text-gray-900 px-6 py-4 whitespace-nowrap" colspan="6">
-                            Data Empty
-                        </td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
-        </div>
+        <a href="{{ route('laporan.create') }}"
+           class="btn btn-primary btn-sm shadow-sm mt-3 mt-sm-0">
+            <i class="fas fa-plus fa-sm text-white-50"></i>
+        </a>
 
     </div>
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show"
+             role="alert">
+            <i class="fas fa-check-circle mr-2"></i>
+            {{ session('success') }}
+            <button type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
-    <div class="mt-3">
-        {{ $laporans->links() }}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-column flex-sm-row
+                    align-items-sm-center justify-content-between">
+
+            <h6 class="m-0 font-weight-bold text-primary">
+                Data Laporan Keamanan Lingkungan
+            </h6>
+
+            <span class="small text-muted mt-2 mt-sm-0">
+                Daftar laporan warga
+            </span>
+        </div>
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover"
+                       id="dataTable"
+                       width="100%"
+                       cellspacing="0">
+                       
+                    <thead class="thead-light">
+                        <tr>
+                            <th width="5%">No</th>
+                            <th>Nama Laporan</th>
+                            <th>Nama Pelapor</th>
+                            <th>Isi Laporan</th>
+                            <th width="22%" class="text-center">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @forelse ($laporans as $laporan)
+                            <tr>
+                                <td>
+                                    {{ $loop->iteration +
+                                       ($laporans->currentPage() - 1)
+                                       * $laporans->perPage() }}
+                                </td>
+
+                                <td>
+                                    {{ $laporan->namaLaporan }}
+                                </td>
+
+                                <td>
+                                    {{ $laporan->namaPelapor }}
+                                </td>
+
+                                <td>
+                                    {{ $laporan->isiLaporan }}
+                                </td>
+
+                                <td class="text-center">
+                                    <a href="{{ route('laporan.show', $laporan) }}"
+                                       id="{{ $laporan->id_laporan }}-show-btn"
+                                       class="btn btn-info btn-sm mb-1"
+                                       title="Lihat Laporan">
+                                        <i class="fas fa-eye"></i>
+                                        Lihat
+                                    </a>
+
+                                    <a href="{{ route('laporan.edit', $laporan) }}"
+                                       id="{{ $laporan->id_laporan }}-edit-btn"
+                                       class="btn btn-warning btn-sm mb-1"
+                                       title="Edit Laporan">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </a>
+
+                                    <!-- Tombol Hapus -->
+                                    <form
+                                        action="{{ route('laporan.destroy', $laporan) }}"
+                                        method="POST"
+                                        class="d-inline"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus laporan ini?');">
+
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm mb-1"
+                                                id="{{ $laporan->id_laporan }}-delete-btn"
+                                                title="Hapus Laporan">
+                                            <i class="fas fa-trash"></i>
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">
+
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    Belum ada laporan yang tersedia.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row
+                        justify-content-between align-items-center mt-3">
+                <div class="small text-muted mb-2 mb-sm-0">
+                    Menampilkan {{ $laporans->firstItem() ?? 0 }}
+                    sampai {{ $laporans->lastItem() ?? 0 }}
+                    dari {{ $laporans->total() }} laporan
+                </div>
+
+                <div>
+                    {{ $laporans->links() }}
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
-
-</body>
-
-</html>
+@endsection
