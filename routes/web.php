@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckpointController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardWargaController;
 use App\Http\Controllers\JadwalController;
@@ -38,22 +39,35 @@ Route::resource('posjaga', \App\Http\Controllers\PosjagaController::class);
 Route::resource('laporan', \App\Http\Controllers\LaporanController::class);
 
 Route::middleware(['auth'])->group(function () {
-
-    // Pengurus dan warga dapat melihat jadwal
     Route::get('/jadwal', [JadwalController::class, 'index'])
         ->name('jadwal.index');
-
-        Route::get('/jadwalwarga', [JadwalController::class, 'jadwalwarga'])
+    Route::get('/jadwalwarga', [JadwalController::class, 'jadwalwarga'])
         ->name('jadwal.jadwalwarga');
 
-    // Hanya pengurus yang dapat mengelola jadwal
     Route::middleware(['checkrole:pengurus'])->group(function () {
-
         Route::post('/jadwal/acak', [JadwalController::class, 'acak'])
             ->name('jadwal.acak');
-
         Route::delete('/jadwal/{jadwal}', [JadwalController::class, 'destroy'])
             ->name('jadwal.destroy');
     });
 
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkpoint',
+        [CheckpointController::class, 'index']
+    )->name('checkpoint.index');
+
+    Route::get('/checkpoint/{id}',
+        [CheckpointController::class, 'show']
+    )->name('checkpoint.show');
+
+    Route::post('/checkpoint/store',
+        [CheckpointController::class, 'store']
+    )->name('checkpoint.store');
+
+    Route::get('/riwayat-checkpoint',
+        [CheckpointController::class, 'riwayat']
+    )->name('checkpoint.riwayat');
+});
+
