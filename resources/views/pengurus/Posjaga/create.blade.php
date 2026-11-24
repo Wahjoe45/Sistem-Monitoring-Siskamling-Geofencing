@@ -22,6 +22,13 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('checkpoint.riwayat') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Riwayat checkpoint warga</span>
+        </a>
+    </li>
+
 @if (auth()->user()->role == 'pengurus')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('jadwal.index') }}">
