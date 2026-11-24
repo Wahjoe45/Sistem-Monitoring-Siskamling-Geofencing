@@ -48,36 +48,36 @@
         Selamat datang, {{ Auth::user()->nama }}!
     </p>
 
-    <div class="row">
-
+    <<div class="row">
+        <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
         <div class="col-md-6 col-xl-3 mb-4">
             <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
                     <div class="text-xs font-weight-bold text-primary mb-1">
-                        Checkpoint berhasil
+                        Checkpoint Valid
                     </div>
                     <div class="h5 font-weight-bold text-gray-800">
-                        30
+                        {{ $checkpointValid }}
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card border-left-success shadow py-2">
+            <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
                     <div class="text-xs font-weight-bold text-success mb-1">
-                        Checkpoint Invalid
+                        Checkpoint invalid
                     </div>
                     <div class="h5 font-weight-bold text-gray-800">
-                        0
+                        {{ $checkpointInvalid }}
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card border-left-success shadow py-2">
+            <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
                     <div class="text-xs font-weight-bold text-success mb-1">
                         Jumlah Pos Jaga
@@ -90,7 +90,7 @@
         </div>
 
         <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card border-left-success shadow py-2">
+            <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
                     <div class="text-xs font-weight-bold text-success mb-1">
                         Jumlah Warga

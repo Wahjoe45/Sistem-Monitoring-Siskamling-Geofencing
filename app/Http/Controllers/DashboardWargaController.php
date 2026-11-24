@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Checkpoint;
 use App\Models\Laporan;
 use App\Models\Posjaga;
 use App\Models\User;
@@ -15,13 +16,17 @@ class DashboardWargaController extends Controller
         // Menghitung jumlah data pada tabel posjaga
         $jumlahPosJaga = Posjaga::count();
         $jumlahWarga = User::where('role', 'warga')->count();
+        $checkpointValid = Checkpoint::where('status_validasi', 'valid')->count();
+        $checkpointInvalid = Checkpoint::where('status_validasi', 'invalid')->count();
         $jumlahLaporan = Laporan::count();
 
         // Mengirimkan variabel ke halaman dashboard
         return view('warga.viewwarga', [
             'jumlahPosJaga' => $jumlahPosJaga,
             'jumlahWarga' => $jumlahWarga,
-            'jumlahLaporan' => $jumlahLaporan
+            'jumlahLaporan' => $jumlahLaporan,
+            'checkpointValid' => $checkpointValid,
+            'checkpointInvalid' => $checkpointInvalid,
         ]);
     }
 }
