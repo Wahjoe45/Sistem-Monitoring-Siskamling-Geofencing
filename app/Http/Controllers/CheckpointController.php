@@ -48,7 +48,7 @@ class CheckpointController extends Controller
             $lonPos
         );
 
-        $radius = 3;
+        $radius = 10;
         if ($jarak <= $radius) {
             $status = 'valid';
         } else {
@@ -115,7 +115,7 @@ class CheckpointController extends Controller
                 ->with('error',
                     'Checkpoint tidak valid! Jarak Anda ' .
                     round($jarak, 2) .
-                    ' meter. Maksimal radius adalah 3 meter. Silakan coba kembali.'
+                    ' meter. Maksimal radius adalah 10 meter. Silakan coba kembali.'
                 );
         }
     }
@@ -148,7 +148,6 @@ class CheckpointController extends Controller
     public function riwayat()
     {
         abort_unless(Auth::user()->role === 'pengurus', 403);
-
         $checkpoints = Checkpoint::latest()
             ->get();
 

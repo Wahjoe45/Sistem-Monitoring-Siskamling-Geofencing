@@ -110,7 +110,7 @@
                         <i class="fas fa-crosshairs mr-2"></i>
                         <strong>Radius Validasi Geofencing</strong>
                         <h4 class="font-weight-bold mb-0 mt-1">
-                            3 Meter
+                            10 Meter
                         </h4>
 
                         <small>
@@ -302,6 +302,7 @@
             tombol.disabled = true;
             tombol.innerHTML =
                 '<i class="fas fa-spinner fa-spin mr-1"></i> Mengambil lokasi GPS...';
+
             navigator.geolocation.getCurrentPosition(
                 function (position) {
                     const latitude = position.coords.latitude;
