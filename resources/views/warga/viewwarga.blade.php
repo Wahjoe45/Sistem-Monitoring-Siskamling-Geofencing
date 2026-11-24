@@ -64,7 +64,7 @@
         <div class="col-md-6 col-xl-3 mb-4">
             <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
-                    <div class="text-xs font-weight-bold text-success mb-1">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
                         Checkpoint invalid
                     </div>
                     <div class="h5 font-weight-bold text-gray-800">
@@ -77,7 +77,7 @@
         <div class="col-md-6 col-xl-3 mb-4">
             <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
-                    <div class="text-xs font-weight-bold text-success mb-1">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
                         Jumlah Pos Jaga
                     </div>
                     <div class="h5 font-weight-bold text-gray-800">
@@ -90,7 +90,7 @@
         <div class="col-md-6 col-xl-3 mb-4">
             <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
-                    <div class="text-xs font-weight-bold text-success mb-1">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
                         Jumlah Warga
                     </div>
                     <div class="h5 font-weight-bold text-gray-800">
@@ -103,7 +103,7 @@
         <div class="col-md-6 col-xl-3 mb-4">
             <div class="card border-left-primary shadow py-2">
                 <div class="card-body">
-                    <div class="text-xs font-weight-bold text-success mb-1">
+                    <div class="text-xs font-weight-bold text-primary mb-1">
                         Jumlah Laporan
                     </div>
                     <div class="h5 font-weight-bold text-gray-800">
