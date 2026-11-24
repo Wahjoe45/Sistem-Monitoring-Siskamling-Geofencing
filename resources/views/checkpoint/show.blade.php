@@ -24,6 +24,13 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('checkpoint.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Halaman Checkpoint</span>
+        </a>
+    </li>
+
 @if (auth()->user()->role == 'warga')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('jadwal.index') }}">
