@@ -1,81 +1,152 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat Checkpoint</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-        rel="stylesheet">
-</head>
 
-<body>
-<div class="container mt-4">
-    <h3 class="mb-4">Riwayat Checkpoint Warga</h3>
-    <div class="card shadow-sm">
+@extends('layouts.app')
+
+@section('sidebar-menu')
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('pengurus.viewpengurus') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('posjaga.index') }}">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>Data Pos Jaga</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('laporan.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Lihat Laporan</span>
+        </a>
+    </li>
+
+@if (auth()->user()->role == 'pengurus')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('jadwal.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Jadwal Jaga</span>
+        </a>
+    </li>
+@endif
+
+@endsection
+
+@section('content')
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-history mr-2"></i>
+            Riwayat Checkpoint Warga
+        </h1>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <i class="fas fa-clipboard-list mr-1"></i>
+                Data Riwayat Patroli Checkpoint
+            </h6>
+        </div>
+
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead class="table-dark">
+                <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+                    <thead class="thead-light">
                         <tr>
-                            <th>No</th>
+                            <th class="text-center" style="width: 5%;">No</th>
                             <th>Nama Warga</th>
                             <th>Pos Jaga</th>
-                            <th>Foto</th>
-                            <th>Jarak</th>
-                            <th>Status</th>
-                            <th>Waktu</th>
+                            <th class="text-center">Foto</th>
+                            <th class="text-center">Jarak</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Waktu</th>
                         </tr>
+
                     </thead>
 
                     <tbody>
                         @forelse($checkpoints as $checkpoint)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $checkpoint->nama }}</td>
-                                <td>{{ $checkpoint->namaPos }}</td>
-                                <td>
-
-                                    <a href="{{ asset('storage/' . $checkpoint->foto) }}"
-                                        target="_blank">
-
-                                        <img
-                                            src="{{ asset('storage/' . $checkpoint->foto) }}"
-                                            width="70"
-                                            class="rounded">
-                                    </a>
-                                </td>
-                                <td>
-                                    {{ number_format($checkpoint->jarak_meter, 2) }} meter
+                                <td class="text-center">
+                                    {{ method_exists($checkpoints, 'firstItem') ? $checkpoints->firstItem() + $loop->index : $loop->iteration }}
                                 </td>
 
-                                <td>
+                                <td class="align-middle">
+                                    {{ $checkpoint->nama }}
+                                </td>
+
+                                <td class="align-middle">
+                                    {{ $checkpoint->namaPos }}
+                                </td>
+
+                                <td class="text-center align-middle">
+                                    @if($checkpoint->foto)
+                                        <a href="{{ asset('storage/' . $checkpoint->foto) }}"
+                                           target="_blank"
+                                           title="Lihat foto checkpoint">
+                                            <img src="{{ asset('storage/' . $checkpoint->foto) }}"
+                                                 alt="Foto checkpoint {{ $checkpoint->nama }}"
+                                                 class="img-thumbnail"
+                                                 style="width: 70px; height: 70px; object-fit: cover;">
+
+                                        </a>
+                                    @else
+                                        <span class="text-muted small">
+                                            Tidak ada foto
+                                        </span>
+                                    @endif
+                                </td>
+
+                                <td class="text-center align-middle">
+                                    {{ number_format($checkpoint->jarak_meter, 2) }}
+                                    meter
+                                </td>
+
+                                <td class="text-center align-middle">
                                     @if($checkpoint->status_validasi == 'valid')
-                                        <span class="badge bg-success">
+                                        <span class="badge badge-success">
+                                            <i class="fas fa-check-circle mr-1"></i>
                                             Valid
                                         </span>
                                     @else
-                                        <span class="badge bg-danger">
+
+                                        <span class="badge badge-danger">
+                                            <i class="fas fa-times-circle mr-1"></i>
                                             Invalid
                                         </span>
                                     @endif
                                 </td>
 
-                                <td>
+                                <!-- Waktu -->
+                                <td class="text-center align-middle">
                                     {{ $checkpoint->created_at->format('d-m-Y H:i:s') }}
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">
-                                    Belum terdapat riwayat checkpoint.
+                                <td colspan="7" class="text-center py-4">
+                                    <i class="fas fa-history fa-2x text-gray-400 mb-2"></i>
+                                    <p class="text-muted mb-0">
+                                        Belum terdapat riwayat checkpoint.
+                                    </p>
                                 </td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
+
+            @if(method_exists($checkpoints, 'links'))
+                <div class="mt-3">
+                    {{ $checkpoints->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </div>
-</body>
-</html>
+@endsection
